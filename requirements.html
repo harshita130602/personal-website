@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>index.html</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="./css/interests.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+    
+<body style="background-color: aqua;">
+    
+    <div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="gallery.html">Gallery</a>
+    </div>
+    <form target="">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="skill" placeholder="Skill">
+        <input type="text" id="comment" placeholder="comment">
+        <select id="level">
+            <option>Proficient</option>
+            <option>Intermediate</option>
+            <option>Beginner</option>
+        </select>
+        <input type="submit" value="submit" id="submit" onclick="updateTable()">
+    </form>
+    
+    <div>
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Skill</th>
+                <th>Comment</th>
+                <th>Level</th>
+            </tr>
+        </table>
+    
+    </div>
+    <script>
+        function updateTable(){
+            var name=document.querySelector("#name").value;
+            var skill=document.querySelector("#skill").value;
+            var comment=document.querySelector("#comment").value;
+            var level=document.querySelector("#level").value;
+            if(name=="") {alert("name cannot be empty");return;}
+            if(skill=="") {alert("skill cannot be empty");return;}
+            if(localStorage.qwerty!=undefined){
+                var str= localStorage.qwerty;
+                str+=`<tr><td>${name}</td><td>${skill}</td><td>${comment}</td><td>${level}</td></tr>`;
+                localStorage.qwerty=str;
+        }
+            else {
+                localStorage.qwerty= `<tr><td>${name}</td><td>${skill}</td><td>${comment}</td><td>${level}</td></tr>` ;
+                
+                 }
+        }
+            window.onload=function(){
+                if(localStorage.qwerty)
+                document.querySelector("#table").innerHTML += localStorage.qwerty; 
+            }
+    </script>
+    </body>
+</html>
